@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {% if category %}
+        {{category.description|truncatewords:155 }}
+    {% else %}
+        Welcome to E-COMMERCE STORE buy whatever you want..!!
+    {% endif %}
+{% endblock %}
+{% block title %}
+    {% if category %}
+        {{category.name }} - E-COMMERCE STORE
+    {% else %}
+        Buy the latest products in the with exciting offers!!
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if category %}
+
+    <div>
+        <div class="row my_row_class">
+            <div class="mx-auto">
+
+            <p><a href="{% url 'ecommerceapp:allProdCat' %}">Our Product Collections</a></p>
+        </div>
+        </div>
+    </div>
+    {% endif %}
+<div class="max_auto">
+    {% if category %}
+  <center><img class="my_image" src="{{category.image.url}}" alt="{{category.name}}"></center>
+
+</div>
+    <br>
+<div>
+    <h1 class="text-center my_title"> {{category.name}}</h1>
+    <p class="text-justify">{{category.description}}</p>
+</div>
+{% else %}
+<div>
+    <center><img class="my_image my_image_padding" src="{% static 'img/ecommerce-banner2.png' %}" alt="our products"></center>
+</div>
+<br>
+<div>
+    <h1 class="text-center my_little"> Our Product Collections</h1>
+    <p class="text-justify"> Ecommerce is the trading of goods and services on the internet. It is your bustling city center or brick-and-mortar shop translated into zeroes and ones on the internet superhighway. This year, an estimated 2.14 billion people worldwide will buy goods and services online, and the number of Prime members shopping Amazon stores now tops 150 million.
+Ecommerce one way among many that people buy and sell things in retail. Some companies sell products online only, but for many, ecommerce is a distribution channel that’s part of a broader strategy that includes physical stores and other revenue streams. Either way, ecommerce allows startups, small businesses, and large companies to sell their products at scale and reach customers across the world.</p>
+</div>
+{% endif %}
+<div class="container">
+    <div class="row mx_auto">
+        {% for product in products.object_list %}
+        <div class="my_bottom_margin col-9 col-sm-12  col-md-4 col-lg-4">
+            <div class="card text-center" style="min-width:18rem;">
+                <a href="{{product.get_url}}"><img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}"></a>
+                <div class="card-body"
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.price}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+<div class="mx_auto">
+    {% if products.paginator.num_pages > 1 %}
+
+   <hr>
+    <div class="text-center">
+        {% for pg in products.paginator.page_range %}
+            <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+        {% endfor %}
+    </div>
+     {% endif %}
+</div>
+<br>
+
+
+{% endblock %}
+
