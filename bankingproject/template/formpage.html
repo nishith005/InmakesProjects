@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+</head>
+<body style="background-color:AliceBlue;">
+<h3>Fill all the details below</h3>
+<form method="post" action="">
+      {% csrf_token %}
+
+    <label for="name">Name:</label><br>
+    <input type="text" name="Name"><br>
+     <label for="date">Date of birth:</label><br>
+    <input type="date" name="Date of Birth"><br>
+     <label for="gender">Gender:</label><br>
+    <input type="radio" name="Gender" value="male">Male
+    <input type="radio" name="Gender"  value="female">Female
+    <input type="radio" name="Gender"  value="prefernottosay">Prefer not to say<br>
+    <label for="phoneno.">Phone No:</label><br>
+    <input type="text" name="Phone No."><br>
+    <label for="email">Email ID:</label><br>
+    <input type="email" name="email" ><br>
+    <label for="address">Address:</label><br>
+    <input type="text" name="Address"><br>
+
+    <br>
+
+
+    <div class="wrapper">
+
+        <select id="districts">
+         <option value="-1">Select district</option>
+        <option value="KSD">Kasaragod</option>
+        <option value="kannur">Kannur</option>
+         <option value="wayanad">Wayanad</option>
+         <option value="kozikode">Kozikode</option>
+         <option value="malappuram">Malappuram</option>
+         <option value="palakkad">Palakkad</option>
+         <option value="thrissur">Thrissur</option>
+         <option value="ernakulam">Ernakulam</option>
+         <option value="idukki">Idukki</option>
+         <option value="kottayam">Kottayam</option>
+         <option value="alapuzha">Alapuzha</option>
+         <option value="pathanamthitta">Pathanamthitta</option>
+         <option value="kollam">Kollam</option>
+         <option value="thiruvananthapuram">Thiruvananthapuram</option>
+    </select>
+    </div>
+<br>
+    <div class="wrapper">
+
+        <select id="Account Type">
+         <option value="-1">Select account type</option>
+        <option value="CA">Checking account</option>
+        <option value="SA">Savings account</option>
+         <option value="BA">Bussiness account</option>
+         <option value="JA">Joint accounts</option>
+        </select>
+    </div>
+    <br>
+
+        <label for="Materials Provided">Materials Provided:</label><br>
+        <input type="checkbox" name="checkboxes"  value="cheackbox1">
+        <label for="checkbox1">Debit card</label>
+        <input type="checkbox" name="checkboxes"  value="cheackbox2">
+        <label for="checkbox2">Credit card</label>
+        <input type="checkbox" name="checkboxes"  value="cheackbox3">
+        <label for="checkbox3">Cheque book</label>
+    <br>
+    <br>
+    <a href="{% url 'finalpage' %}"><button type="button" >Submit</button></a>
+   <a href="{% url 'logout' %}"><button type="button" >Logout</button></a>
+</form>
+
+</body>
+</html>
